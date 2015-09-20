@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class RootController {
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String getLogin(){
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String showRoot() {
         return "login";
     }
 }

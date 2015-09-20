@@ -11,24 +11,35 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by sachin on 8/1/2015.
  */
-@Controller
+@RestController
 @RequestMapping("/user")
 public class UserController {
 
     @Autowired(required = true)
     private UserService userService;
 
-    @RequestMapping(value = "/checkUser", method = RequestMethod.POST, consumes = "application/json")
-    @ResponseBody
-    public JSONObject validateUser(@RequestBody User user) {
+    @RequestMapping(value = "/validate", method = RequestMethod.POST, consumes = "application/json")
+    public String validateUser(@RequestBody User user) {
         System.out.println("validateUser " + user.getEmail());
         Document userDoc = userService.validateUser(user.getEmail(), user.getPassword());
         JSONObject response = new JSONObject();
+        boolean result;
         if (userDoc == null)
-            response.put("status", "false");
+            result = false;
         else
-            response.put("status", "true");
+            result = true;
+        response.put("status", result);
         System.out.println("response = " + response.toString());
-        return response;
+        return response.toString();
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = "application/json")
+    public String addUser(@RequestBody User user) {
+        System.out.println();
+        boolean result = userService.createUser(user.getEmail(), user.getPassword());
+        JSONObject response = new JSONObject();
+        response.put("status", result);
+        System.out.println("respomse " + response.toString());
+        return response.toString();
     }
 }
