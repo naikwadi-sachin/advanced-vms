@@ -1,5 +1,6 @@
 package com.uncc.vms.dao;
 
+import com.mongodb.DBObject;
 import com.mongodb.client.MongoCollection;
 import com.uncc.vms.domain.Event;
 import org.bson.Document;
@@ -7,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+
+import static com.mongodb.client.model.Filters.eq;
 
 /**
  * Created by sachin on 9/23/2015.
@@ -26,6 +29,7 @@ public class EventDAO {
         permalink = permalink.toLowerCase();
         Document document = new Document();
         document.append("name", event.getName());
+        document.append("permalink", permalink);
         document.append("description", event.getDescription());
         document.append("date", event.getDate());
         document.append("state", event.getState());
@@ -42,5 +46,11 @@ public class EventDAO {
         return permalink;
     }
 
+    public Document findByPermalink(String permalink) {
+
+        Document document = postCollection.find(eq("permalink", permalink)).first();
+
+        return document;
+    }
 }
 

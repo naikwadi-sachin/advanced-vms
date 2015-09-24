@@ -6,10 +6,10 @@ import org.hibernate.validator.constraints.NotEmpty;
  * Created by sachin on 9/23/2015.
  */
 public class Event {
-    private int id;
     private int userId;
     @NotEmpty
     private String name;
+    private String permalink;
     @NotEmpty
     private String description;
     @NotEmpty
@@ -19,14 +19,6 @@ public class Event {
     @NotEmpty
     private String state;
     private String createdDate;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getUserId() {
         return userId;
@@ -82,5 +74,13 @@ public class Event {
 
     public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public String getPermalink() {
+        return permalink;
+    }
+
+    public void setPermalink(String permalink) {
+        this.permalink = permalink;
     }
 }

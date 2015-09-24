@@ -2,6 +2,7 @@ package com.uncc.vms.service;
 
 import com.uncc.vms.dao.EventDAO;
 import com.uncc.vms.domain.Event;
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +18,10 @@ public class EventServiceImpl implements EventService {
     @Override
     public String createPost(Event event) {
         return eventDAO.addPost(event);
+    }
+
+    @Override
+    public Document findByPermalink(String permalink) {
+        return eventDAO.findByPermalink(permalink);
     }
 }
