@@ -6,6 +6,8 @@ import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by sachin on 9/23/2015.
  */
@@ -23,5 +25,10 @@ public class EventServiceImpl implements EventService {
     @Override
     public Document findByPermalink(String permalink) {
         return eventDAO.findByPermalink(permalink);
+    }
+
+    @Override
+    public List<Document> findByDateDescending(int limit) {
+        return eventDAO.findByDateDescending(limit);
     }
 }
