@@ -45,16 +45,15 @@ public class PostController {
         return post.toString();
     }
 
-    @RequestMapping(value = "/findByDate/{limit}", method = RequestMethod.GET)
-    public String findByDate(@PathVariable int limit) {
+    @RequestMapping(value = "/customPostSearch", method = RequestMethod.POST)
+    public String customPostSearch(@RequestBody Event event) {
         JSONArray result = new JSONArray();
-        System.out.println("limit = " + limit);
-        List<Document> collection = eventService.findByDateDescending(limit);
+        System.out.println("event = " + event);
+        List<Document> collection = eventService.customPostSearch(event);
         if (collection == null) {
             result.put(new JSONObject().put("status", "not found"));
-        }
-        else {
-            for(Document document : collection)
+        } else {
+            for (Document document : collection)
                 result.put(document);
         }
 

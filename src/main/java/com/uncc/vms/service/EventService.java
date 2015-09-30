@@ -13,6 +13,7 @@ public interface EventService {
     String createPost(Event event);
 
     Document findByPermalink(String permalink);
-    List<Document> findByDateDescending(int limit);
+
+    List<Document> customPostSearch(Event event);
 
 }

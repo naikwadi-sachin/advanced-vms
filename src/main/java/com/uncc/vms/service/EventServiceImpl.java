@@ -28,7 +28,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Document> findByDateDescending(int limit) {
-        return eventDAO.findByDateDescending(limit);
+    public List<Document> customPostSearch(Event event) {
+        return eventDAO.customPostSearch(event);
     }
+
 }

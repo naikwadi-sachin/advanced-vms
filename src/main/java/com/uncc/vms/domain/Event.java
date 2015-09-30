@@ -83,4 +83,18 @@ public class Event {
     public void setPermalink(String permalink) {
         this.permalink = permalink;
     }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "userId=" + userId +
+                ", name='" + name + '\'' +
+                ", permalink='" + permalink + '\'' +
+                ", description='" + description + '\'' +
+                ", date='" + date + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", createdDate='" + createdDate + '\'' +
+                '}';
+    }
 }
